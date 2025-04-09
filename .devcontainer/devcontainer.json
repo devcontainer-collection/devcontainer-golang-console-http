@@ -1,0 +1,124 @@
+{
+  "name": "devcontainer-golang-console-restapi",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "main",
+  "workspaceFolder": "/workspace",
+  // This script is executed only once after the image is built
+  "postCreateCommand": "bash /workspace/.devcontainer/containers/main/startup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "editor.tabSize": 4,
+        "editor.renderWhitespace": "all",
+        "editor.formatOnSave": true,
+        "remote.localPortHost": "allInterfaces",
+        "git.detectSubmodulesLimit": 70,
+        "editor.tabCompletion": "on",
+        // Set to false to prevent automatic installation and update of go tools
+        "go.toolsManagement.autoUpdate": false,
+        //--------------------- launch in devcontainer ---------------------
+        "launch": {
+          "version": "0.2.0",
+          "configurations": [
+            {
+              "name": "Debug Go Program using built debug binary",
+              "type": "go",
+              "request": "launch",
+              "mode": "exec",
+              "program": "${workspaceFolder}/app/build/debug/main",
+              "preLaunchTask": "build debug",
+              "cwd": "${workspaceFolder}/app",
+              "env": {},
+              "args": [],
+              // "showLog": false,
+              "console": "integratedTerminal"
+            }
+            // ,{
+            //     "name": "Debug Go Program uing src/main.go",
+            //     "type": "go",
+            //     "request": "launch",
+            //     "mode": "debug",
+            //     "program": "${workspaceFolder}/app/src/main.go",
+            //     "cwd": "${workspaceFolder}/app",
+            //     "env": {},
+            //     "args": [],
+            //     // "showLog": false,
+            //     "console": "integratedTerminal"
+            // },
+          ]
+        },
+        //===================== launch in devcontainer =====================
+        //--------------------- tasks in devcontainer ---------------------
+        "tasks": {
+          "version": "2.0.0",
+          "tasks": [
+            {
+              "label": "clean builds",
+              "type": "shell",
+              "command": "rm",
+              "args": [
+                "-rf",
+                "build/"
+              ],
+              "options": {
+                "cwd": "${workspaceFolder}/app"
+              },
+              "problemMatcher": []
+            },
+            {
+              "label": "build debug",
+              "type": "shell",
+              "command": "bash",
+              "args": [
+                "${workspaceFolder}/app/build-scripts/build-select.sh",
+                "--build-type=debug",
+                "--link-type=dynamic"
+              ],
+              "options": {
+                "cwd": "${workspaceFolder}/app"
+              },
+              "problemMatcher": [],
+              "group": "build"
+            },
+            {
+              "label": "build release dynamic(Manual Multi-Target Selection)",
+              "type": "shell",
+              "command": "bash",
+              "args": [
+                "${workspaceFolder}/app/build-scripts/build-select.sh",
+                "--build-type=release",
+                "--link-type=dynamic"
+              ],
+              "options": {
+                "cwd": "${workspaceFolder}/app"
+              },
+              "problemMatcher": [],
+              "group": "build"
+            },
+            {
+              "label": "build release Dynamic(amd64/arm64 for Linux/macOS/Windows)",
+              "type": "shell",
+              "command": "bash",
+              "args": [
+                "${workspaceFolder}/app/build-scripts/build-select.sh",
+                "--build-type=release",
+                "--link-type=dynamic",
+                "--targets=linux/amd64,linux/arm64,darwin/amd64,darwin/arm64,windows/amd64,windows/arm64"
+              ],
+              "options": {
+                "cwd": "${workspaceFolder}/app"
+              },
+              "problemMatcher": [],
+              "group": "build"
+            }
+          ]
+        }
+        //===================== tasks in devcontainer =====================
+      }
+    }
+  }
+}
