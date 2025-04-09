@@ -31,7 +31,6 @@ The list of supported targets based on the `golang:1.24.2-bullseye` image is as 
 | wasip1           | wasm                                              |
 | windows          | 386, amd64, arm64                                 |
 
-The HTTP server running on port 8000 is bound to the external interface, allowing access from outside the container.  
 
 ## Support This Project
 
@@ -88,4 +87,5 @@ The list of supported targets can also be viewed by running `go tool dist list` 
 
 ### Notes
 
-The file `[WORKSPACE_FOLDER]/app/build-scripts/build-select.sh` is used for building the project in both debug and release modes.
+- The file `[WORKSPACE_FOLDER]/app/build-scripts/build-select.sh` is used for building the project in both debug and release modes.
+- The HTTP server running on port 8000 is bound to the external interface, allowing access from outside the container.  
