@@ -7,7 +7,7 @@ The Docker image size is approximately 2.3GB after being built.
 This setup has been tested only on macOS-x86_64 and Linux-x86_64 as host platforms, with Linux-x86_64 as the container runtime. Compatibility with other environments is not guaranteed.
 
 You can check the list of supported targets after opening the project in the DevContainer (step 4 below) by running `go tool dist list` in the terminal within VSCode.  
-This can also be seen during the process described in step 8.2 below.
+This can also be seen during the process described in step 7.2 below.
 
 ### Supported Targets
 
@@ -63,28 +63,25 @@ If you see a message prompting you to install recommended extensions like in the
 
 ### 6. Debug the Project  
 Open `[WORKSPACE_FOLDER]/app/src/main.go` and press **F5** to start debugging.  
+This will generate a debug binary in the `[WORKSPACE_FOLDER]/app/build/debug` directory.  
 The project will be **compiled and executed inside the container**, and the output will be visible in the **Terminal**.  
-If you see a message in the **Debug Console** after starting the project, switch to the **Terminal** tab to find the running program.
+If you see a message in the **Debug Console** after starting the project, switch to the **Terminal** tab to find the running program.  
 You can also set breakpoints in the code and use the **Debug Console** to inspect variables and control execution.
 
 After entering your name in the VSCode terminal and pressing Enter, the HTTP server will start.  
 You can access it from the host OS browser by navigating to `http://127.0.0.1:8000`.  
 The page will display a greeting message: `Hello, [your name]!`.
 
-### 7. Build and Run the Project  
-Open the command palette: Press **Ctrl + Shift + P** (macOS: **Cmd + Shift + P**) → **Tasks: Run Task** → **build debug**.  
-This will generate a debug binary in the `[WORKSPACE_FOLDER]/app/build/debug` directory. You can then run the binary to test the application.
-
-### 8. Cross-Build the Project  
+### 7. Cross-Build the Project  
 You can cross-build the project for multiple platforms using predefined or custom target configurations.  
 Open the command palette: Press **Ctrl + Shift + P** (macOS: **Cmd + Shift + P**) → **Tasks: Run Task** → select the desired task.
 
 The resulting binaries will be generated in the `[WORKSPACE_FOLDER]/app/build/release` directory.
 
-#### 8.1 Build for Predefined Targets  
+#### 7.1 Build for Predefined Targets  
 Select the task **build release Dynamic (amd64/arm64 for Linux/macOS/Windows)** to generate release binaries for predefined targets.
 
-#### 8.2 Build for Custom Targets  
+#### 7.2 Build for Custom Targets  
 Select the task **build release dynamic (Manual Multi-Target Selection)**.  
 You can use the **arrow keys** to navigate the list of supported targets, press **Space** to select/deselect targets, and press **Enter** to confirm your selection.  
 The list of supported targets can also be viewed by running `go tool dist list` in the terminal within VSCode during this process.
