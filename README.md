@@ -1,10 +1,9 @@
 ## About This DevContainer
 
 This repository provides a DevContainer setup for Go.
-The Docker image is based on `golang:1.24.2-bullseye`.
-The Docker image size is approximately 2.3GB after being built.
+The Docker image is based on `golang:1.24.2-bullseye` and has a size of approximately 2.3GB after being built.
 
-This setup has been tested only on macOS-x86_64 and Linux-x86_64 as host platforms, with Linux-x86_64 as the container runtime. Compatibility with other environments is not guaranteed.
+This setup has been tested only on macOS-x86_64 and Linux-x86_64 as host platforms, with Linux-x86_64 as the container runtime. Compatibility with other environments has not been verified.
 
 You can check the list of supported targets after opening the project in the DevContainer (step 4 below) by running `go tool dist list` in the terminal within VSCode.  
 This can also be seen during the process described in step 7.2 below.

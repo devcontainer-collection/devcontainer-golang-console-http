@@ -14,6 +14,6 @@ services:
       - type: bind
         source: ../
         target: /workspace
-        consistency: cached # for macOS
+        consistency: cached # for macOS(optional for performance)
         
     command: tail -f /dev/null # keep the container running
