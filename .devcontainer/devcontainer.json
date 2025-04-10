@@ -1,5 +1,5 @@
 {
-  "name": "devcontainer-golang-console-restapi",
+  "name": "devcontainer-golang-console-http",
   "dockerComposeFile": "docker-compose.yml",
   "service": "main",
   "workspaceFolder": "/workspace",
